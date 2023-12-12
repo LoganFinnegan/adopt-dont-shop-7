@@ -16,21 +16,21 @@ RSpec.describe 'The New Application page', type: :feature do
     # 3. Starting an Application, Form not Completed
     it "returns a error message when form is not completed" do
       # When I visit the new application page
-    visit "/applications/new"
-    # And I fail to fill in any of the form fields
-    # fill_in(:name, with "")
-    # fill_in(:street_address, with: "")
-    # fill_in(:city, with: "")
-    # fill_in(:state, with: "")
-    # fill_in(:zip, with: "")
-    # fill_in(:description, with: "")
-    # And I click submit
-    click_on("submit")
-    # Then I am taken back to the new applications page
-    # ???
-    # And I see a message that I must fill in those fields.
-    expect(page).to have_content("Application not created: Required information missing.")
-    expect(current_path).to eq("/applications/new")
+      visit "/applications/new"
+      # And I fail to fill in any of the form fields
+      # fill_in(:name, with "")
+      # fill_in(:street_address, with: "")
+      # fill_in(:city, with: "")
+      # fill_in(:state, with: "")
+      # fill_in(:zip, with: "")
+      # fill_in(:description, with: "")
+      # And I click submit
+      click_on("submit")
+      # Then I am taken back to the new applications page
+      # ???
+      # And I see a message that I must fill in those fields.
+      expect(page).to have_content("Application not created: Required information missing.")
+      expect(current_path).to eq("/applications/new")
     end
   end
 end

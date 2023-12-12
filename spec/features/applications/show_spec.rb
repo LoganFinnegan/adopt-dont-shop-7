@@ -93,6 +93,41 @@ RSpec.describe 'The Application Show Page', type: :feature do
         expect(page).to have_content(@pet_2.name)
       end
     end
+
+    # 6. Submit an Application
+    it "asks why applicant would be a good owner" do
+      # When I visit an application's show page
+      visit "/applications/#{@app_1.id}"
+
+      # And I have added one or more pets to the application
+      within '.find-pets' do
+        fill_in :search_name, with: "Spot"
+        click_on("submit")
+      end
+      within '.found-pets' do
+        within "#pet-#{@pet_2.id}" do
+          click_on("Adopt this Pet")
+        end
+      end
+      within '.pets-on-app' do
+        # Then I see a section to submit my application
+        expect(page).to have_button("Submit Application")
+        # And in that section I see an input to enter why I would make a good owner for these pet(s)
+        expect(page).to have_content("Why I would make a good owner for these pet(s)?:")
+        # When I fill in that input
+        fill_in :reason_to_adopt, with: "I will cook them into a soup."
+        # And I click a button to submit this application
+        click_on("Submit Application")
+      end
+      # Then I am taken back to the application's show page
+      expect(current_path).to eq("/applications/#{@app_1.id}")
+      # And I see an indicator that the application is "Pending"
+      expect(page).to have_content("Pending")
+      # And I see all the pets that I want to adopt
+      expect(page).to have_content(@pet_2.name)
+      # And I do not see a section to add more pets to this application
+      expect(page).to_not have_content("Add a Pet to this Application")
+    end
   end
 end
 #delete this
