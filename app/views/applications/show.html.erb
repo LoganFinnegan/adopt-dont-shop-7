@@ -19,12 +19,14 @@
 </section>
 
 <section class='find-pets'>
+  <% if @app.status != 1 %>
   <h2> Add a Pet to this Application </h2>
   <%= form_with url: "/applications/#{@app.id}", method: :get do |f| %>
     <%= f.label :search_name, "Search for Pet:" %>
     <%= f.text_field :search_name %>
 
     <%= f.submit "submit"%>
+  <% end %>
   <% end %>
 </section>
 

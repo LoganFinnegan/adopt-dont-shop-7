@@ -21,6 +21,7 @@ class ApplicationsController < ApplicationController
 
   def submit
     @app = Application.find(params[:id])
+    @app.update(status: 1)
     if @app.update(app_params.merge(status: 1))
       redirect_to "/applications/#{@app.id}"
     else
