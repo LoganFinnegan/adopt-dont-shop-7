@@ -40,5 +40,13 @@
   <% end %>
 </section>
 
-
+<section class='submit-application'>
+  <% if @app.status != 1 %>  
+    <%= form_with url: "/applications/#{@app.id}/submit", method: :get do |f| %>
+      <%= f.label :reason_to_adopt, "Why I would make a good owner for these pet(s)?:" %>
+      <p><%= f.text_area :reason_to_adopt %></p>
+      <%= button_to "Submit Application", "/applications/#{@app.id}/submit", method: :patch %>
+    <% end %>
+  <% end %>
+</section>
 

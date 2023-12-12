@@ -109,7 +109,7 @@ RSpec.describe 'The Application Show Page', type: :feature do
           click_on("Adopt this Pet")
         end
       end
-      within '.pets-on-app' do
+      within '.submit-application' do
         # Then I see a section to submit my application
         expect(page).to have_button("Submit Application")
         # And in that section I see an input to enter why I would make a good owner for these pet(s)

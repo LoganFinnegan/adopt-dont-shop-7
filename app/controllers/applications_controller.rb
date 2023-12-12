@@ -19,6 +19,15 @@ class ApplicationsController < ApplicationController
     @found_pets = Pet.search(params[:search_name]) if params[:search_name]
   end
 
+  def submit
+    @app = Application.find(params[:id])
+    if @app.update(app_params.merge(status: 1))
+      redirect_to "/applications/#{@app.id}"
+    else
+      render 'show'
+    end
+  end
+
   private
 
   def app_params

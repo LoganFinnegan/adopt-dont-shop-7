@@ -14,4 +14,8 @@ class Application < ApplicationRecord
   # def found_pets(name)
   #   pets.first.shelter.pets.search(name)
   # end
+  
+  def submit
+  
+  end
 end
